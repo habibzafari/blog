@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class ,'index'])->name('home');
+Route::get('/posts/{slug}', [HomeController::class ,'show'])->name('home.show');
 
 Route::get('/about', function () {
     return view('frontend.about.index');
@@ -19,6 +20,10 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::resource('post', PostController::class);
+    Route::get('trash', [PostController::class ,'trash'])->name('post.trash');
+    Route::delete('force-delete/{id}', [PostController::class ,'delete'])->name('post.force-delete');
+    Route::get('restore/{id}', [PostController::class ,'restore'])->name('post.restore');
+
 
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['auth']], function () {

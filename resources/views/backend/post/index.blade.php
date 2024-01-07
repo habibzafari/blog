@@ -10,6 +10,9 @@
                 Posts
                 <a href="{{ route('post.create') }}" class="btn btn-success float-right"><i class="fas fa-plus-circle"></i> Add
                     Post</a>
+                    <br>
+                    <br>
+                        <a href="{{route('post.trash')}}" class="btn btn-danger float-right">Trash</a>
             </h5>
             <div class="card-body">
                 <table class="table">

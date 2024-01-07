@@ -13,4 +13,8 @@ class HomeController extends Controller
         // return view('frontend.home.index', ['posts' => $posts]);
 
     }
+    public function show($slug){
+        $post= Post::where('slug',$slug)->first();
+        return view('frontend.home.show',compact('post'));
+    }
 }

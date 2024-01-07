@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::latest()->paginate(10);
         // $posts = Post::latest()->paginate(10);
         return view('backend.post.index', compact('posts'));
 
@@ -98,4 +98,24 @@ class PostController extends Controller
         // return 'great';
         // return Toastr::success('Post Successfully Deleted','Success');
     }
+    public function trash(){
+        $posts=Post::onlyTrashed()->paginate(10);
+        return view('backend.post.trash',compact('posts'));
+        // $posts=Post::onlyTrashed()->get();
+        // return view('backend.post.trash')->with('posts',$posts);
+    }
+
+    public function delete($id){
+        $post = Post::withTrashed()->where('id',$id)->first();
+        $post->forceDelete();
+        return "success";
+    }
+
+    public function restore($id){
+        $post = Post::withTrashed()->where('id',$id)->first();
+        $post->restore();
+
+        return redirect()->route('post.index');
+    }
 }
+ 

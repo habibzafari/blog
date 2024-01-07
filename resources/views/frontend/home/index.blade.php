@@ -21,7 +21,7 @@
                 <!-- Post preview-->
                 @foreach ($posts as $post)
                     <div class="post-preview">
-                        <a href="post.html">
+                        <a href="{{route('home.show',['slug'=>$post->slug])}}">
                             <h2 class="post-title">{{$post->title}}</h2>
                             <h3 class="post-subtitle">{{$post->sub_title}}</h3>
                         </a>
@@ -31,6 +31,7 @@
                     </div>
                     <!-- Divider-->
                 @endforeach
+                {{$posts->links()}}                
                 <hr class="my-4" />
             </div>
         </div>
