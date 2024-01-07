@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Post Blog</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -20,7 +21,11 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('backend/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <script src='https://cdn.tiny.cloud/1/no-api-key/tinymce/4/tinymce.min.js'></script>
-
+    <style>
+        svg{
+            width: 20px;
+        }
+    </style>
 
 </head>
 
@@ -37,7 +42,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">{{ auth()->user()->name }}</div>
             </a>
 
             <!-- Divider -->
@@ -135,7 +140,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2024</span>
                     </div>
                 </div>
             </footer>
@@ -181,6 +186,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('backend/js/sb-admin-2.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @yield('script')
 
 <script>
   var editor_config = {
@@ -220,6 +228,32 @@
   };
 
   tinymce.init(editor_config);
+</script>
+<script>
+    const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        @if (Session::has('success'))
+            Toast.fire({
+            icon: 'success',
+            title: "{{ Session::get('success') }}"
+            })
+        @endif
+        @if (Session::has('error'))
+            Toast.fire({
+            icon: 'error',
+            title: "{{ Session::get('error') }}"
+            })
+        @endif
 </script>
 </body>
 
