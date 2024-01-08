@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\AboutController;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -23,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('trash', [PostController::class ,'trash'])->name('post.trash');
     Route::delete('force-delete/{id}', [PostController::class ,'delete'])->name('post.force-delete');
     Route::get('restore/{id}', [PostController::class ,'restore'])->name('post.restore');
-
+    Route::get('admin/about',[AboutController::class,'index']);
 
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['auth']], function () {
