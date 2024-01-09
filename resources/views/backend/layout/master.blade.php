@@ -60,6 +60,11 @@
                     <i class="fas fa-fw fa-blog"></i>
                     <span>Post</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('about.index')}}">
+                    <i class="fas fa-address-card"></i>
+                    <span>About</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
