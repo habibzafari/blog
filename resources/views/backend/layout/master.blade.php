@@ -65,6 +65,11 @@
                     <i class="fas fa-address-card"></i>
                     <span>About</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('setting.index')}}">
+                    <i class="fas fa-tools"></i>
+                    <span>Settings</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
