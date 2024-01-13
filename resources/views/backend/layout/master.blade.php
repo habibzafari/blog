@@ -66,6 +66,11 @@
                     <span>About</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{route('users.index')}}">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('setting.index')}}">
                     <i class="fas fa-tools"></i>
                     <span>Settings</span></a>
